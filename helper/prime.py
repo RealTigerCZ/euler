@@ -36,8 +36,28 @@ def isPrime(num):
         if num % i == 0:
             return False
 
+def getPrimeFactors(num):
+    toReturn = []
+    if num < 2:
+        return toReturn
+
+    for i in prime_generator():
+        if i > num:
+            return toReturn
+
+        while num % i == 0:
+            toReturn.append(i)
+            num = num // i
+
 
 if __name__ == "__main__":
     print(prime_list(250))
     for i in range(20):
         print(f"{i}: {isPrime(i)}")
+
+    testing_num = 600851475143 + 6542132
+    print(getPrimeFactors(testing_num))
+    suma = 1
+    for factor in getPrimeFactors(testing_num):
+        suma *= factor
+    print(suma, suma == testing_num)
